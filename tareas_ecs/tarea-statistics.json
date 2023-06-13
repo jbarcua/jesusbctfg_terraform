@@ -1,0 +1,19 @@
+[{
+    "name": "statistics",
+    "image": "jesusbc/statistics",
+    "memoryReservation": 300,
+    "portMappings": [
+      {
+        "hostPort": 8082,
+        "protocol": "tcp",
+        "containerPort": 8082
+      }
+    ],
+    "essential": true,
+    "environmentFiles": [
+      {
+        "value": "arn:aws:s3:::db-services-bucket-tf/env_vars.env",
+        "type": "s3"
+      }
+    ]
+  }]

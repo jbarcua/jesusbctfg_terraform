@@ -1,0 +1,28 @@
+version: '3.3'
+
+services:
+
+  cassandra_db:
+    image: cassandra:4.1.0
+    container_name: cassandra_db
+    volumes:
+      - cassandra_volume:/var/lib/cassandra
+    ports:
+      - "9042:9042"
+
+  cassandra_aux:
+    image: cassandra:4.1.0
+    container_name: cassandra_aux
+    volumes:
+      - ./cql:/cql
+      - ./bash:/docker-entrypoint.sh
+    command: >
+      bash ./docker-entrypoint.sh/cassandra_init.sh
+
+volumes:
+  cassandra_volume:
+    driver_opts:
+      type: "nfs"
+      o: "addr=${efs_ip},nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport"
+      device: ":/cassandra-efs"
+

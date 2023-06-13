@@ -1,0 +1,19 @@
+[{
+    "name": "sensor",
+    "image": "jesusbc/sensor",
+    "memoryReservation": 300,
+    "portMappings": [
+      {
+        "hostPort": 8081,
+        "protocol": "tcp",
+        "containerPort": 8081
+      }
+    ],
+    "essential": true,
+    "environmentFiles": [
+      {
+        "value": "arn:aws:s3:::db-services-bucket-tf/env_vars.env",
+        "type": "s3"
+      }
+    ]
+  }]

@@ -1,0 +1,19 @@
+[{
+    "name": "plots",
+    "image": "jesusbc/plots",
+    "memoryReservation": 300,
+    "portMappings": [
+      {
+        "hostPort": 8080,
+        "protocol": "tcp",
+        "containerPort": 8080
+      }
+    ],
+    "essential": true,
+    "environmentFiles": [
+      {
+        "value": "arn:aws:s3:::db-services-bucket-tf/env_vars.env",
+        "type": "s3"
+      }
+    ]
+  }]
